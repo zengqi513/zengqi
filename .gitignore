@@ -1,4 +1,4 @@
-# Gradle
+﻿# Gradle
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -28,3 +28,16 @@ app/build/outputs/bundle/
 
 # 备份目录
 backups/
+
+# 大文件排除
+*.apk
+*.aab
+*.zip
+*.tar.gz
+app/build/
+app/release/
+app/debug/
+
+# 本地备份
+AutoBookkeeper-backups/
+*.bak
