@@ -1,0 +1,492 @@
+﻿Classfile /C:/Users/77497/.qclaw/workspace/AutoBookkeeper/app/build/tmp/kotlin-classes/debug/com/autobookkeeper/service/PaymentNotificationListener$WhenMappings.class
+  Last modified 2026��5��6��; size 2027 bytes
+  SHA-256 checksum 57d1d42a28225997324b795317f7874d6f1ad0000e20937e930095fd13aa98f2
+  Compiled from "PaymentNotificationListener.kt"
+public final class com.autobookkeeper.service.PaymentNotificationListener$WhenMappings
+  minor version: 0
+  major version: 61
+  flags: (0x1031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER, ACC_SYNTHETIC
+  this_class: #2                          // com/autobookkeeper/service/PaymentNotificationListener$WhenMappings
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 1, attributes: 3
+Constant pool:
+    #1 = Utf8               com/autobookkeeper/service/PaymentNotificationListener$WhenMappings
+    #2 = Class              #1            // com/autobookkeeper/service/PaymentNotificationListener$WhenMappings
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               <clinit>
+    #6 = Utf8               ()V
+    #7 = Utf8               java/lang/NoSuchFieldError
+    #8 = Class              #7            // java/lang/NoSuchFieldError
+    #9 = Utf8               com/autobookkeeper/data/Source
+   #10 = Class              #9            // com/autobookkeeper/data/Source
+   #11 = Utf8               values
+   #12 = Utf8               ()[Lcom/autobookkeeper/data/Source;
+   #13 = NameAndType        #11:#12       // values:()[Lcom/autobookkeeper/data/Source;
+   #14 = Methodref          #10.#13       // com/autobookkeeper/data/Source.values:()[Lcom/autobookkeeper/data/Source;
+   #15 = Utf8               TAOBAO
+   #16 = Utf8               Lcom/autobookkeeper/data/Source;
+   #17 = NameAndType        #15:#16       // TAOBAO:Lcom/autobookkeeper/data/Source;
+   #18 = Fieldref           #10.#17       // com/autobookkeeper/data/Source.TAOBAO:Lcom/autobookkeeper/data/Source;
+   #19 = Utf8               ordinal
+   #20 = Utf8               ()I
+   #21 = NameAndType        #19:#20       // ordinal:()I
+   #22 = Methodref          #10.#21       // com/autobookkeeper/data/Source.ordinal:()I
+   #23 = Utf8               TAOBAO_FLASH
+   #24 = NameAndType        #23:#16       // TAOBAO_FLASH:Lcom/autobookkeeper/data/Source;
+   #25 = Fieldref           #10.#24       // com/autobookkeeper/data/Source.TAOBAO_FLASH:Lcom/autobookkeeper/data/Source;
+   #26 = Utf8               PDD
+   #27 = NameAndType        #26:#16       // PDD:Lcom/autobookkeeper/data/Source;
+   #28 = Fieldref           #10.#27       // com/autobookkeeper/data/Source.PDD:Lcom/autobookkeeper/data/Source;
+   #29 = Utf8               JD
+   #30 = NameAndType        #29:#16       // JD:Lcom/autobookkeeper/data/Source;
+   #31 = Fieldref           #10.#30       // com/autobookkeeper/data/Source.JD:Lcom/autobookkeeper/data/Source;
+   #32 = Utf8               DOUYIN
+   #33 = NameAndType        #32:#16       // DOUYIN:Lcom/autobookkeeper/data/Source;
+   #34 = Fieldref           #10.#33       // com/autobookkeeper/data/Source.DOUYIN:Lcom/autobookkeeper/data/Source;
+   #35 = Utf8               KUAISHOU
+   #36 = NameAndType        #35:#16       // KUAISHOU:Lcom/autobookkeeper/data/Source;
+   #37 = Fieldref           #10.#36       // com/autobookkeeper/data/Source.KUAISHOU:Lcom/autobookkeeper/data/Source;
+   #38 = Utf8               MEITUAN
+   #39 = NameAndType        #38:#16       // MEITUAN:Lcom/autobookkeeper/data/Source;
+   #40 = Fieldref           #10.#39       // com/autobookkeeper/data/Source.MEITUAN:Lcom/autobookkeeper/data/Source;
+   #41 = Utf8               DINGDONG
+   #42 = NameAndType        #41:#16       // DINGDONG:Lcom/autobookkeeper/data/Source;
+   #43 = Fieldref           #10.#42       // com/autobookkeeper/data/Source.DINGDONG:Lcom/autobookkeeper/data/Source;
+   #44 = Utf8               PUPU
+   #45 = NameAndType        #44:#16       // PUPU:Lcom/autobookkeeper/data/Source;
+   #46 = Fieldref           #10.#45       // com/autobookkeeper/data/Source.PUPU:Lcom/autobookkeeper/data/Source;
+   #47 = Utf8               BANK_ICBC
+   #48 = NameAndType        #47:#16       // BANK_ICBC:Lcom/autobookkeeper/data/Source;
+   #49 = Fieldref           #10.#48       // com/autobookkeeper/data/Source.BANK_ICBC:Lcom/autobookkeeper/data/Source;
+   #50 = Utf8               BANK_CCB
+   #51 = NameAndType        #50:#16       // BANK_CCB:Lcom/autobookkeeper/data/Source;
+   #52 = Fieldref           #10.#51       // com/autobookkeeper/data/Source.BANK_CCB:Lcom/autobookkeeper/data/Source;
+   #53 = Utf8               BANK_CMB
+   #54 = NameAndType        #53:#16       // BANK_CMB:Lcom/autobookkeeper/data/Source;
+   #55 = Fieldref           #10.#54       // com/autobookkeeper/data/Source.BANK_CMB:Lcom/autobookkeeper/data/Source;
+   #56 = Utf8               BANK_BOCOM
+   #57 = NameAndType        #56:#16       // BANK_BOCOM:Lcom/autobookkeeper/data/Source;
+   #58 = Fieldref           #10.#57       // com/autobookkeeper/data/Source.BANK_BOCOM:Lcom/autobookkeeper/data/Source;
+   #59 = Utf8               BANK_ABC
+   #60 = NameAndType        #59:#16       // BANK_ABC:Lcom/autobookkeeper/data/Source;
+   #61 = Fieldref           #10.#60       // com/autobookkeeper/data/Source.BANK_ABC:Lcom/autobookkeeper/data/Source;
+   #62 = Utf8               BOC
+   #63 = NameAndType        #62:#16       // BOC:Lcom/autobookkeeper/data/Source;
+   #64 = Fieldref           #10.#63       // com/autobookkeeper/data/Source.BOC:Lcom/autobookkeeper/data/Source;
+   #65 = Utf8               BANK_SPDB
+   #66 = NameAndType        #65:#16       // BANK_SPDB:Lcom/autobookkeeper/data/Source;
+   #67 = Fieldref           #10.#66       // com/autobookkeeper/data/Source.BANK_SPDB:Lcom/autobookkeeper/data/Source;
+   #68 = Utf8               BANK_CITI
+   #69 = NameAndType        #68:#16       // BANK_CITI:Lcom/autobookkeeper/data/Source;
+   #70 = Fieldref           #10.#69       // com/autobookkeeper/data/Source.BANK_CITI:Lcom/autobookkeeper/data/Source;
+   #71 = Utf8               BANK_CEB
+   #72 = NameAndType        #71:#16       // BANK_CEB:Lcom/autobookkeeper/data/Source;
+   #73 = Fieldref           #10.#72       // com/autobookkeeper/data/Source.BANK_CEB:Lcom/autobookkeeper/data/Source;
+   #74 = Utf8               BANK_CMBC
+   #75 = NameAndType        #74:#16       // BANK_CMBC:Lcom/autobookkeeper/data/Source;
+   #76 = Fieldref           #10.#75       // com/autobookkeeper/data/Source.BANK_CMBC:Lcom/autobookkeeper/data/Source;
+   #77 = Utf8               BANK_CITIC
+   #78 = NameAndType        #77:#16       // BANK_CITIC:Lcom/autobookkeeper/data/Source;
+   #79 = Fieldref           #10.#78       // com/autobookkeeper/data/Source.BANK_CITIC:Lcom/autobookkeeper/data/Source;
+   #80 = Utf8               BANK_HXB
+   #81 = NameAndType        #80:#16       // BANK_HXB:Lcom/autobookkeeper/data/Source;
+   #82 = Fieldref           #10.#81       // com/autobookkeeper/data/Source.BANK_HXB:Lcom/autobookkeeper/data/Source;
+   #83 = Utf8               BANK_PAB
+   #84 = NameAndType        #83:#16       // BANK_PAB:Lcom/autobookkeeper/data/Source;
+   #85 = Fieldref           #10.#84       // com/autobookkeeper/data/Source.BANK_PAB:Lcom/autobookkeeper/data/Source;
+   #86 = Utf8               UNIONPAY
+   #87 = NameAndType        #86:#16       // UNIONPAY:Lcom/autobookkeeper/data/Source;
+   #88 = Fieldref           #10.#87       // com/autobookkeeper/data/Source.UNIONPAY:Lcom/autobookkeeper/data/Source;
+   #89 = Utf8               DCEP
+   #90 = NameAndType        #89:#16       // DCEP:Lcom/autobookkeeper/data/Source;
+   #91 = Fieldref           #10.#90       // com/autobookkeeper/data/Source.DCEP:Lcom/autobookkeeper/data/Source;
+   #92 = Utf8               MANUAL
+   #93 = NameAndType        #92:#16       // MANUAL:Lcom/autobookkeeper/data/Source;
+   #94 = Fieldref           #10.#93       // com/autobookkeeper/data/Source.MANUAL:Lcom/autobookkeeper/data/Source;
+   #95 = Utf8               WECHAT
+   #96 = NameAndType        #95:#16       // WECHAT:Lcom/autobookkeeper/data/Source;
+   #97 = Fieldref           #10.#96       // com/autobookkeeper/data/Source.WECHAT:Lcom/autobookkeeper/data/Source;
+   #98 = Utf8               ALIPAY
+   #99 = NameAndType        #98:#16       // ALIPAY:Lcom/autobookkeeper/data/Source;
+  #100 = Fieldref           #10.#99       // com/autobookkeeper/data/Source.ALIPAY:Lcom/autobookkeeper/data/Source;
+  #101 = Utf8               $EnumSwitchMapping$0
+  #102 = Utf8               [I
+  #103 = NameAndType        #101:#102     // $EnumSwitchMapping$0:[I
+  #104 = Fieldref           #2.#103       // com/autobookkeeper/service/PaymentNotificationListener$WhenMappings.$EnumSwitchMapping$0:[I
+  #105 = Class              #102          // "[I"
+  #106 = Utf8               Lkotlin/Metadata;
+  #107 = Utf8               mv
+  #108 = Integer            1
+  #109 = Integer            9
+  #110 = Integer            0
+  #111 = Utf8               k
+  #112 = Integer            3
+  #113 = Utf8               xi
+  #114 = Integer            48
+  #115 = Utf8               com/autobookkeeper/service/PaymentNotificationListener
+  #116 = Class              #115          // com/autobookkeeper/service/PaymentNotificationListener
+  #117 = Utf8               WhenMappings
+  #118 = Utf8               PaymentNotificationListener.kt
+  #119 = Utf8               Code
+  #120 = Utf8               StackMapTable
+  #121 = Utf8               InnerClasses
+  #122 = Utf8               SourceFile
+  #123 = Utf8               RuntimeVisibleAnnotations
+{
+  public static final int[] $EnumSwitchMapping$0;
+    descriptor: [I
+    flags: (0x1019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL, ACC_SYNTHETIC
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=0
+         0: invokestatic  #14                 // Method com/autobookkeeper/data/Source.values:()[Lcom/autobookkeeper/data/Source;
+         3: arraylength
+         4: newarray       int
+         6: astore_0
+         7: nop
+         8: aload_0
+         9: getstatic     #18                 // Field com/autobookkeeper/data/Source.TAOBAO:Lcom/autobookkeeper/data/Source;
+        12: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        15: iconst_1
+        16: iastore
+        17: goto          21
+        20: astore_1
+        21: nop
+        22: aload_0
+        23: getstatic     #25                 // Field com/autobookkeeper/data/Source.TAOBAO_FLASH:Lcom/autobookkeeper/data/Source;
+        26: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        29: iconst_2
+        30: iastore
+        31: goto          35
+        34: astore_1
+        35: nop
+        36: aload_0
+        37: getstatic     #28                 // Field com/autobookkeeper/data/Source.PDD:Lcom/autobookkeeper/data/Source;
+        40: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        43: iconst_3
+        44: iastore
+        45: goto          49
+        48: astore_1
+        49: nop
+        50: aload_0
+        51: getstatic     #31                 // Field com/autobookkeeper/data/Source.JD:Lcom/autobookkeeper/data/Source;
+        54: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        57: iconst_4
+        58: iastore
+        59: goto          63
+        62: astore_1
+        63: nop
+        64: aload_0
+        65: getstatic     #34                 // Field com/autobookkeeper/data/Source.DOUYIN:Lcom/autobookkeeper/data/Source;
+        68: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        71: iconst_5
+        72: iastore
+        73: goto          77
+        76: astore_1
+        77: nop
+        78: aload_0
+        79: getstatic     #37                 // Field com/autobookkeeper/data/Source.KUAISHOU:Lcom/autobookkeeper/data/Source;
+        82: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+        85: bipush        6
+        87: iastore
+        88: goto          92
+        91: astore_1
+        92: nop
+        93: aload_0
+        94: getstatic     #40                 // Field com/autobookkeeper/data/Source.MEITUAN:Lcom/autobookkeeper/data/Source;
+        97: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       100: bipush        7
+       102: iastore
+       103: goto          107
+       106: astore_1
+       107: nop
+       108: aload_0
+       109: getstatic     #43                 // Field com/autobookkeeper/data/Source.DINGDONG:Lcom/autobookkeeper/data/Source;
+       112: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       115: bipush        8
+       117: iastore
+       118: goto          122
+       121: astore_1
+       122: nop
+       123: aload_0
+       124: getstatic     #46                 // Field com/autobookkeeper/data/Source.PUPU:Lcom/autobookkeeper/data/Source;
+       127: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       130: bipush        9
+       132: iastore
+       133: goto          137
+       136: astore_1
+       137: nop
+       138: aload_0
+       139: getstatic     #49                 // Field com/autobookkeeper/data/Source.BANK_ICBC:Lcom/autobookkeeper/data/Source;
+       142: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       145: bipush        10
+       147: iastore
+       148: goto          152
+       151: astore_1
+       152: nop
+       153: aload_0
+       154: getstatic     #52                 // Field com/autobookkeeper/data/Source.BANK_CCB:Lcom/autobookkeeper/data/Source;
+       157: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       160: bipush        11
+       162: iastore
+       163: goto          167
+       166: astore_1
+       167: nop
+       168: aload_0
+       169: getstatic     #55                 // Field com/autobookkeeper/data/Source.BANK_CMB:Lcom/autobookkeeper/data/Source;
+       172: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       175: bipush        12
+       177: iastore
+       178: goto          182
+       181: astore_1
+       182: nop
+       183: aload_0
+       184: getstatic     #58                 // Field com/autobookkeeper/data/Source.BANK_BOCOM:Lcom/autobookkeeper/data/Source;
+       187: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       190: bipush        13
+       192: iastore
+       193: goto          197
+       196: astore_1
+       197: nop
+       198: aload_0
+       199: getstatic     #61                 // Field com/autobookkeeper/data/Source.BANK_ABC:Lcom/autobookkeeper/data/Source;
+       202: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       205: bipush        14
+       207: iastore
+       208: goto          212
+       211: astore_1
+       212: nop
+       213: aload_0
+       214: getstatic     #64                 // Field com/autobookkeeper/data/Source.BOC:Lcom/autobookkeeper/data/Source;
+       217: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       220: bipush        15
+       222: iastore
+       223: goto          227
+       226: astore_1
+       227: nop
+       228: aload_0
+       229: getstatic     #67                 // Field com/autobookkeeper/data/Source.BANK_SPDB:Lcom/autobookkeeper/data/Source;
+       232: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       235: bipush        16
+       237: iastore
+       238: goto          242
+       241: astore_1
+       242: nop
+       243: aload_0
+       244: getstatic     #70                 // Field com/autobookkeeper/data/Source.BANK_CITI:Lcom/autobookkeeper/data/Source;
+       247: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       250: bipush        17
+       252: iastore
+       253: goto          257
+       256: astore_1
+       257: nop
+       258: aload_0
+       259: getstatic     #73                 // Field com/autobookkeeper/data/Source.BANK_CEB:Lcom/autobookkeeper/data/Source;
+       262: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       265: bipush        18
+       267: iastore
+       268: goto          272
+       271: astore_1
+       272: nop
+       273: aload_0
+       274: getstatic     #76                 // Field com/autobookkeeper/data/Source.BANK_CMBC:Lcom/autobookkeeper/data/Source;
+       277: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       280: bipush        19
+       282: iastore
+       283: goto          287
+       286: astore_1
+       287: nop
+       288: aload_0
+       289: getstatic     #79                 // Field com/autobookkeeper/data/Source.BANK_CITIC:Lcom/autobookkeeper/data/Source;
+       292: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       295: bipush        20
+       297: iastore
+       298: goto          302
+       301: astore_1
+       302: nop
+       303: aload_0
+       304: getstatic     #82                 // Field com/autobookkeeper/data/Source.BANK_HXB:Lcom/autobookkeeper/data/Source;
+       307: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       310: bipush        21
+       312: iastore
+       313: goto          317
+       316: astore_1
+       317: nop
+       318: aload_0
+       319: getstatic     #85                 // Field com/autobookkeeper/data/Source.BANK_PAB:Lcom/autobookkeeper/data/Source;
+       322: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       325: bipush        22
+       327: iastore
+       328: goto          332
+       331: astore_1
+       332: nop
+       333: aload_0
+       334: getstatic     #88                 // Field com/autobookkeeper/data/Source.UNIONPAY:Lcom/autobookkeeper/data/Source;
+       337: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       340: bipush        23
+       342: iastore
+       343: goto          347
+       346: astore_1
+       347: nop
+       348: aload_0
+       349: getstatic     #91                 // Field com/autobookkeeper/data/Source.DCEP:Lcom/autobookkeeper/data/Source;
+       352: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       355: bipush        24
+       357: iastore
+       358: goto          362
+       361: astore_1
+       362: nop
+       363: aload_0
+       364: getstatic     #94                 // Field com/autobookkeeper/data/Source.MANUAL:Lcom/autobookkeeper/data/Source;
+       367: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       370: bipush        25
+       372: iastore
+       373: goto          377
+       376: astore_1
+       377: nop
+       378: aload_0
+       379: getstatic     #97                 // Field com/autobookkeeper/data/Source.WECHAT:Lcom/autobookkeeper/data/Source;
+       382: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       385: bipush        26
+       387: iastore
+       388: goto          392
+       391: astore_1
+       392: nop
+       393: aload_0
+       394: getstatic     #100                // Field com/autobookkeeper/data/Source.ALIPAY:Lcom/autobookkeeper/data/Source;
+       397: invokevirtual #22                 // Method com/autobookkeeper/data/Source.ordinal:()I
+       400: bipush        27
+       402: iastore
+       403: goto          407
+       406: astore_1
+       407: aload_0
+       408: putstatic     #104                // Field $EnumSwitchMapping$0:[I
+       411: return
+      Exception table:
+         from    to  target type
+             7    17    20   Class java/lang/NoSuchFieldError
+            21    31    34   Class java/lang/NoSuchFieldError
+            35    45    48   Class java/lang/NoSuchFieldError
+            49    59    62   Class java/lang/NoSuchFieldError
+            63    73    76   Class java/lang/NoSuchFieldError
+            77    88    91   Class java/lang/NoSuchFieldError
+            92   103   106   Class java/lang/NoSuchFieldError
+           107   118   121   Class java/lang/NoSuchFieldError
+           122   133   136   Class java/lang/NoSuchFieldError
+           137   148   151   Class java/lang/NoSuchFieldError
+           152   163   166   Class java/lang/NoSuchFieldError
+           167   178   181   Class java/lang/NoSuchFieldError
+           182   193   196   Class java/lang/NoSuchFieldError
+           197   208   211   Class java/lang/NoSuchFieldError
+           212   223   226   Class java/lang/NoSuchFieldError
+           227   238   241   Class java/lang/NoSuchFieldError
+           242   253   256   Class java/lang/NoSuchFieldError
+           257   268   271   Class java/lang/NoSuchFieldError
+           272   283   286   Class java/lang/NoSuchFieldError
+           287   298   301   Class java/lang/NoSuchFieldError
+           302   313   316   Class java/lang/NoSuchFieldError
+           317   328   331   Class java/lang/NoSuchFieldError
+           332   343   346   Class java/lang/NoSuchFieldError
+           347   358   361   Class java/lang/NoSuchFieldError
+           362   373   376   Class java/lang/NoSuchFieldError
+           377   388   391   Class java/lang/NoSuchFieldError
+           392   403   406   Class java/lang/NoSuchFieldError
+      StackMapTable: number_of_entries = 54
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class "[I" ]
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NoSuchFieldError ]
+        frame_type = 0 /* same */
+}
+InnerClasses:
+  public #117= #2 of #116;                // WhenMappings=class com/autobookkeeper/service/PaymentNotificationListener$WhenMappings of class com/autobookkeeper/service/PaymentNotificationListener
+SourceFile: "PaymentNotificationListener.kt"
+RuntimeVisibleAnnotations:
+  0: #106(#107=[I#108,I#109,I#110],#111=I#112,#113=I#114)
+    kotlin.Metadata(
+      mv=[1,9,0]
+      k=3
+      xi=48
+    )

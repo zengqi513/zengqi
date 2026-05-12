@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">自动记账</string>
+
+    <!-- 分类 -->
+    <string name="category_food">餐饮</string>
+    <string name="category_shopping">消费</string>
+    <string name="category_medical">医疗</string>
+    <string name="category_transport">交通</string>
+    <string name="category_housing">房屋水电</string>
+    <string name="category_other">其他</string>
+
+    <!-- 来源 -->
+    <string name="source_manual">手动</string>
+    <string name="source_wechat">微信</string>
+    <string name="source_alipay">支付宝</string>
+    <string name="source_taobao">淘宝</string>
+    <string name="source_pdd">拼多多</string>
+    <string name="source_douyin">抖音</string>
+    <string name="source_kuaishou">快手</string>
+    <string name="source_pupu">朴朴超市</string>
+
+    <!-- 无障碍服务 -->
+    <string name="accessibility_service_description">监听支付宝和微信支付结果页面，自动提取金额进行记账</string>
+</resources>

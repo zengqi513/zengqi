@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 底部绿色块 - 更大的视觉占比 -->
+    <path
+        android:fillColor="#059669"
+        android:pathData="M14,25 L94,25 Q108,25 108,39 L108,94 Q108,108 94,108 L14,108 Q0,108 0,94 L0,39 Q0,25 14,25 Z" />
+    <!-- 白色 ¥ 符号 - 更大更粗 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,42 L54,60 L72,42"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,60 L54,88"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,70 L66,70"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,80 L66,80"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- 左下角白色小标签 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M22,95 L32,95 L32,105 L22,105 Z"
+        android:strokeColor="#059669"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#059669"
+        android:pathData="M24,97 L30,97 M24,100 L30,100"
+        android:strokeColor="#059669"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

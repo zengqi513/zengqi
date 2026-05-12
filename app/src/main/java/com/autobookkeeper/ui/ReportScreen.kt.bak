@@ -1,0 +1,238 @@
+package com.autobookkeeper.ui
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.autobookkeeper.data.CategoryData
+import com.autobookkeeper.viewmodel.TransactionViewModel
+import com.autobookkeeper.viewmodel.ReportPeriod
+import com.autobookkeeper.viewmodel.ReportType
+
+private val BlueGray = Color(0xFF607D8B)
+private val Teal500 = Color(0xFF009688)
+private val Pink400 = Color(0xFFE91E63)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ReportScreen(
+    viewModel: TransactionViewModel,
+    onBack: () -> Unit
+) {
+    val periodSummary by viewModel.periodSummary.collectAsState()
+    val reportPeriod by viewModel.reportPeriod.collectAsState()
+    val reportType by viewModel.reportType.collectAsState()
+    val selectedCategory by viewModel.selectedReportCategory.collectAsState()
+    val allCategories by viewModel.allCategories.collectAsState()
+    val incomeDist by viewModel.incomeDistribution.collectAsState()
+    val comparisonResult by viewModel.comparisonResult.collectAsState()
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("报表") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "返回")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { viewModel.forceRefresh() }) {
+                        Icon(Icons.Default.Refresh, "刷新")
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            item { Spacer(Modifier.height(4.dp)) }
+
+            // 顶部切换栏
+            item { ReportTopBar(viewModel, reportPeriod, reportType, periodSummary) }
+
+            // 汇总卡片
+            item { SummaryCard(periodSummary, reportType) }
+
+            // 分类饼图
+            val stats = incomeDist.categoryBreakdown
+            if (stats.isNotEmpty()) {
+                item {
+                    CategoryPieLegendCard(
+                        categories = stats,
+                        allCategories = allCategories,
+                        title = if (reportType == ReportType.INCOME) "收入分类分布" else "支出分类分布",
+                        totalAmount = if (reportType == ReportType.INCOME) periodSummary.income else periodSummary.expense,
+                        onCategoryClick = { viewModel.selectReportCategory(it) }
+                    )
+                }
+            }
+
+            // 下钻子分类（通过 CategoryData 的 parentName 过滤，CategoryStat 没有 parentName）
+            val selCat = selectedCategory
+            val subCategories = if (selCat != null) {
+                val subCatData = allCategories.filter { it.parentName == selCat }
+                val subCatNames = subCatData.map { it.name }.toSet()
+                stats.filter { it.name in subCatNames }
+            } else emptyList()
+
+            if (selCat != null && subCategories.isNotEmpty()) {
+                item {
+                    SubCategoryPieCard(
+                        parentName = selCat,
+                        subStats = subCategories,
+                        totalAmount = if (reportType == ReportType.INCOME) periodSummary.income else periodSummary.expense,
+                        onBack = { viewModel.clearSelectedReportCategory() },
+                        onSubClick = { }
+                    )
+                }
+            }
+
+            // 对比卡片
+            if (comparisonResult != null) {
+                item { CompareResultCard(comparisonResult!!) }
+            }
+
+            item { Spacer(Modifier.height(24.dp)) }
+        }
+    }
+}
+
+@Composable
+private fun ReportTopBar(
+    viewModel: TransactionViewModel,
+    period: ReportPeriod,
+    reportType: ReportType,
+    summary: com.autobookkeeper.viewmodel.PeriodSummary
+) {
+    val currentMonth by viewModel.currentMonth.collectAsState()
+    val periodLabel = when (period) {
+        ReportPeriod.WEEK -> "本周"
+        ReportPeriod.MONTH -> summary.periodLabel.ifBlank { currentMonth }
+        ReportPeriod.YEAR -> summary.periodLabel.ifBlank { "${summary.startDate}" }
+        ReportPeriod.CUSTOM -> "自定义"
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
+        Column(Modifier.padding(12.dp)) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                FilterChip(selected = reportType == ReportType.EXPENSE,
+                    onClick = { viewModel.setReportType(ReportType.EXPENSE) },
+                    label = { Text("支出") })
+                FilterChip(selected = reportType == ReportType.INCOME,
+                    onClick = { viewModel.setReportType(ReportType.INCOME) },
+                    label = { Text("收入") })
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                listOf(ReportPeriod.WEEK to "周", ReportPeriod.MONTH to "月", ReportPeriod.YEAR to "年").forEach { (p, l) ->
+                    FilterChip(selected = period == p,
+                        onClick = { viewModel.setReportPeriod(p) },
+                        label = { Text(l) })
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { viewModel.prevPeriod() }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, "上一期")
+                }
+                Text(periodLabel, style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold)
+                IconButton(onClick = { viewModel.nextPeriod() }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, "下一期")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SummaryCard(
+    summary: com.autobookkeeper.viewmodel.PeriodSummary,
+    reportType: ReportType
+) {
+    val mainAmount = if (reportType == ReportType.INCOME) summary.income else summary.expense
+    val compareAmount = if (reportType == ReportType.INCOME) summary.expense else summary.income
+    val txCount = if (reportType == ReportType.INCOME) summary.incomeTransactionCount else summary.expenseTransactionCount
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text(
+                if (reportType == ReportType.INCOME) "收入 ¥${String.format("%,.0f", mainAmount)}"
+                else "支出 ¥${String.format("%,.0f", mainAmount)}",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = if (reportType == ReportType.INCOME) Teal500 else Pink400
+            )
+            Spacer(Modifier.height(4.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text("${if (reportType == ReportType.INCOME) "支出" else "收入"} ¥${String.format("%,.0f", compareAmount)}",
+                    style = MaterialTheme.typography.bodySmall, color = Color(0xFF9E9E9E))
+                Text("${txCount}笔",
+                    style = MaterialTheme.typography.bodySmall, color = Color(0xFF9E9E9E))
+            }
+            val avg = if (txCount > 0) mainAmount / txCount else 0.0
+            Text("日均 ¥${String.format("%,.0f", avg)}",
+                style = MaterialTheme.typography.labelSmall, color = Color(0xFF9E9E9E))
+        }
+    }
+}
+
+@Composable
+private fun CompareResultCard(
+    result: com.autobookkeeper.viewmodel.ComparisonResult
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text("数据对比",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold, color = BlueGray)
+            Spacer(Modifier.height(8.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Column {
+                    Text("本期", style = MaterialTheme.typography.labelSmall, color = Color(0xFF9E9E9E))
+                    Text("¥${String.format("%,.0f", result.currentData.expense)}",
+                        style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold,
+                        color = if (result.currentData.expense <= result.previousData.expense) Teal500 else Pink400)
+                }
+                Column(horizontalAlignment = Alignment.End) {
+                    Text("上期", style = MaterialTheme.typography.labelSmall, color = Color(0xFF9E9E9E))
+                    Text("¥${String.format("%,.0f", result.previousData.expense)}",
+                        style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                }
+            }
+            val diff = result.currentData.expense - result.previousData.expense
+            val pct = if (result.previousData.expense > 0) (diff / result.previousData.expense * 100) else 0.0
+            Text("${if (diff >= 0) "↑" else "↓"} ${String.format("%+.0f", diff)} (${String.format("%+.1f", pct)}%)",
+                style = MaterialTheme.typography.labelSmall,
+                color = if (diff <= 0) Teal500 else Pink400)
+        }
+    }
+}

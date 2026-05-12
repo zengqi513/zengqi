@@ -1,0 +1,7 @@
+请从讯飞开放平台下载Android SDK：
+1. 访问 https://www.xfyun.cn/sdk/dispatcher
+2. 选择"语音听写" Android SDK
+3. 下载后将 Msc.jar 放入此目录
+4. 将 so 库放入 app/src/main/jniLibs/ 对应架构目录
+
+APPID: 31318999

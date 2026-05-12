@@ -1,0 +1,270 @@
+﻿package com.autobookkeeper.ui
+
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
+import androidx.wear.compose.material.ExperimentalWearMaterialApi
+import androidx.wear.compose.material.FractionalThreshold
+import androidx.wear.compose.material.rememberSwipeableState
+import androidx.wear.compose.material.swipeable
+import com.autobookkeeper.data.Transaction
+import com.autobookkeeper.data.Source
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.roundToInt
+
+/**
+ * 鏀寔婊戝姩鍒犻櫎/缂栬緫鐨勪氦鏄撻」缁勪欢
+ * 
+ * @param transaction 浜ゆ槗鏁版嵁
+ * @param categoryIconMap 鍒嗙被鍥炬爣鏄犲皠
+ * @param isSelected 鏄惁閫変腑锛堢鐞嗘ā寮忥級
+ * @param isManageMode 鏄惁澶勪簬绠＄悊妯″紡
+ * @param onClick 鐐瑰嚮鍥炶皟
+ * @param onEdit 缂栬緫鍥炶皟
+ * @param onDelete 鍒犻櫎鍥炶皟
+ * @param enabled 鏄惁鍚敤婊戝姩锛堢鐞嗘ā寮忔椂绂佺敤锛? */
+@OptIn(ExperimentalWearMaterialApi::class)
+@Composable
+fun SwipeableTransactionItem(
+    transaction: Transaction,
+    categoryIconMap: Map<String, String>,
+    isSelected: Boolean,
+    isManageMode: Boolean,
+    onClick: () -> Unit,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit,
+    enabled: Boolean = true
+) {
+    val swipeableState = rememberSwipeableState(
+        initialValue = 0,
+        confirmStateChange = { newState ->
+            when (newState) {
+                -1 -> { onDelete(); true }
+                1 -> { onEdit(); true }
+                else -> true
+            }
+        }
+    )
+    
+    // 鍔ㄧ敾鎭㈠鍒板師浣?    LaunchedEffect(swipeableState.currentValue) {
+        if (swipeableState.currentValue != 0) {
+            kotlinx.coroutines.delay(150)
+            swipeableState.animateTo(0)
+        }
+    }
+    
+    val dateFormat = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())
+    val isExpense = transaction.amount < 0
+    val amountColor = if (isExpense) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+    val liveIcon = categoryIconMap[transaction.categoryName] ?: transaction.categoryIcon
+    
+    // 婊戝姩闃堝€?- 璋冩暣瑙﹀彂璺濈
+    val maxSwipe = with(LocalDensity.current) { 100.dp.toPx() }
+    val anchors = mapOf(
+        -maxSwipe to -1,  // 宸︽粦鍒犻櫎
+        0f to 0,          // 鍘熶綅
+        maxSwipe to 1     // 鍙虫粦缂栬緫
+    )
+    
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .clip(RoundedCornerShape(12.dp))
+    ) {
+        // 鑳屾櫙灞傦紙婊戝姩鏃舵樉绀猴級- 甯﹁儗鏅壊鍜屽浘鏍?        if (!isManageMode && enabled) {
+            val swipeOffset = swipeableState.offset.value
+            val swipeProgress = (swipeOffset / maxSwipe).coerceIn(-1f, 1f)
+            
+            // 宸︽粦鍒犻櫎鑳屾櫙锛堢孩鑹诧級
+            if (swipeOffset < 0) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            color = MaterialTheme.colorScheme.error.copy(
+                                alpha = kotlin.math.abs(swipeProgress) * 0.8f
+                            )
+                        ),
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    Row(
+                        modifier = Modifier.padding(end = 24.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            "鍒犻櫎",
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Icon(
+                            Icons.Default.Delete,
+                            contentDescription = "鍒犻櫎",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+            }
+            
+            // 鍙虫粦缂栬緫鑳屾櫙锛堣摑鑹?涓昏壊锛?            if (swipeOffset > 0) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            color = MaterialTheme.colorScheme.primary.copy(
+                                alpha = swipeProgress * 0.8f
+                            )
+                        ),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    Row(
+                        modifier = Modifier.padding(start = 24.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Edit,
+                            contentDescription = "缂栬緫",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Text(
+                            "缂栬緫",
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                }
+            }
+        }
+        
+        // 鍓嶆櫙鍗＄墖
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .then(
+                    if (!isManageMode && enabled) {
+                        Modifier
+                            .offset {
+                                IntOffset(
+                                    swipeableState.offset.value.roundToInt(),
+                                    0
+                                )
+                            }
+                            .swipeable(
+                                state = swipeableState,
+                                anchors = anchors,
+                                thresholds = { _, _ -> FractionalThreshold(0.25f) },
+                                orientation = Orientation.Horizontal
+                            )
+                    } else Modifier
+                )
+                .clickable { onClick() },
+            shape = RoundedCornerShape(12.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer
+                else MaterialTheme.colorScheme.surface
+            )
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // 绠＄悊妯″紡澶嶉€夋
+                if (isManageMode) {
+                    Checkbox(
+                        checked = isSelected,
+                        onCheckedChange = { onClick() },
+                        modifier = Modifier.size(36.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                
+                // 鍒嗙被鍥炬爣
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.surfaceVariant),
+                    contentAlignment = Alignment.Center
+                ) { 
+                    CategoryIcon(icon = liveIcon, size = 28) 
+                }
+                
+                Spacer(modifier = Modifier.width(12.dp))
+                
+                // 涓棿淇℃伅
+                Column(modifier = Modifier.weight(1f)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            transaction.categoryName, 
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Surface(
+                            shape = RoundedCornerShape(4.dp),
+                            color = if (transaction.source == Source.MANUAL) 
+                                MaterialTheme.colorScheme.primaryContainer
+                            else 
+                                MaterialTheme.colorScheme.secondaryContainer
+                        ) { 
+                            Text(
+                                " ${transaction.source.label} ", 
+                                style = MaterialTheme.typography.labelSmall
+                            ) 
+                        }
+                    }
+                    if (transaction.note.isNotBlank()) {
+                        Text(
+                            transaction.note.take(20), 
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant, 
+                            maxLines = 1
+                        )
+                    }
+                }
+                
+                // 鍙充晶閲戦鍜屾椂闂?                Column(horizontalAlignment = Alignment.End) {
+                    Text(
+                        if (isExpense) "-楼%.2f".format(kotlin.math.abs(transaction.amount))
+                        else "+楼%.2f".format(transaction.amount),
+                        style = MaterialTheme.typography.titleMedium, 
+                        fontWeight = FontWeight.Bold, 
+                        color = amountColor
+                    )
+                    Text(
+                        dateFormat.format(Date(transaction.date)), 
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+}
+
